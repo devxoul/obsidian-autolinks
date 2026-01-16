@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-autolinks",
+  "name": "Auto Links",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Auto-convert regex patterns to clickable links",
+  "author": "",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}

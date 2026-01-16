@@ -26,7 +26,7 @@ Auto-convert regex patterns to clickable links in Obsidian, similar to GitHub's 
 ### Manual Installation
 
 1. Download `main.js`, `manifest.json`, and `styles.css` from the latest release
-2. Create folder `<vault>/.obsidian/plugins/obsidian-autolinks/`
+2. Create folder `<vault>/.obsidian/plugins/autolinks/`
 3. Copy the downloaded files into the folder
 4. Reload Obsidian
 5. Enable the plugin in Settings → Community Plugins

@@ -1,9 +1,9 @@
 {
-  "id": "obsidian-autolinks",
+  "id": "autolinks",
   "name": "Auto Links",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
-  "description": "Auto-convert regex patterns to clickable links",
+  "description": "Auto-convert regex patterns to clickable links.",
   "author": "Jeon Suyeol",
   "authorUrl": "https://github.com/devxoul",
   "isDesktopOnly": false

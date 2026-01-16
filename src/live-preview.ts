@@ -38,10 +38,6 @@ class AutoLinkWidget extends WidgetType {
     link.href = this.url
     link.textContent = this.text
     link.className = 'auto-link external-link cm-link'
-    link.onclick = (e) => {
-      e.preventDefault()
-      window.open(this.url, '_blank')
-    }
     return link
   }
 }

@@ -8,9 +8,11 @@
     "dev": "node esbuild.config.mjs",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
     "version": "node version-bump.mjs && git add manifest.json versions.json",
+    "typecheck": "tsc -noEmit -skipLibCheck",
     "lint": "biome lint .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
+    "format:check": "biome format .",
     "test": "bun test"
   },
   "keywords": [],

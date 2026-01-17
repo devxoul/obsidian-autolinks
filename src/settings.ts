@@ -27,7 +27,7 @@ export class AutoLinksSettingTab extends PluginSettingTab {
     const { containerEl } = this
     containerEl.empty()
 
-    new Setting(containerEl).setName('Auto links settings').setHeading()
+    new Setting(containerEl).setName('Rules').setHeading()
 
     // Display existing rules
     this.plugin.settings.rules.forEach((rule, index) => {
@@ -39,7 +39,7 @@ export class AutoLinksSettingTab extends PluginSettingTab {
         .setDesc('Regex pattern to match (e.g., ISSUE-(\\d+))')
         .addText((text) =>
           text
-            .setPlaceholder('ISSUE-(\\d+)')
+            .setPlaceholder('Issue-(\\d+)')
             .setValue(rule.pattern)
             .onChange(async (value) => {
               const currentRule = this.plugin.settings.rules[index]
@@ -60,7 +60,7 @@ export class AutoLinksSettingTab extends PluginSettingTab {
       // URL template input
       new Setting(ruleContainer)
         .setName('URL template')
-        .setDesc('URL with $1, $2, etc. for capture groups')
+        .setDesc('Link target with $1, $2, etc. for capture groups')
         .addText((text) =>
           text
             .setPlaceholder('https://example.com/$1')

@@ -1,4 +1,5 @@
-import { Extension } from '@codemirror/state'
+import { syntaxTree } from '@codemirror/language'
+import { Extension, Range } from '@codemirror/state'
 import {
   Decoration,
   DecorationSet,
@@ -8,19 +9,9 @@ import {
   ViewUpdate,
   WidgetType,
 } from '@codemirror/view'
+import type { SyntaxNodeRef } from '@lezer/common'
 import { findAutoLinks } from './autolink-engine'
 import AutoLinksPlugin from './main'
-
-// Import syntaxTree from @codemirror/language if available
-// This is provided by Obsidian at runtime
-let syntaxTree: any
-try {
-  const lang = require('@codemirror/language')
-  syntaxTree = lang.syntaxTree
-} catch (_e) {
-  // Fallback if not available
-  syntaxTree = null
-}
 
 /**
  * Widget that renders an auto-link as a clickable anchor element.
@@ -62,7 +53,7 @@ class AutoLinkPlugin implements PluginValue {
   }
 
   buildDecorations(view: EditorView): DecorationSet {
-    const decorations: any[] = []
+    const decorations: Range<Decoration>[] = []
     const doc = view.state.doc
     const cursorPos = view.state.selection.main.head
 
@@ -85,26 +76,24 @@ class AutoLinkPlugin implements PluginValue {
 
         // Check if match is in a skip zone using syntax tree (if available)
         let inSkipZone = false
-        if (syntaxTree) {
-          const tree = syntaxTree(view.state)
-          tree.iterate({
-            from,
-            to,
-            enter: (node: any) => {
-              const nodeType = node.type.name.toLowerCase()
-              // Skip if inside code, link, or inline-code nodes
-              if (
-                nodeType.includes('code') ||
-                nodeType.includes('link') ||
-                nodeType.includes('inline') ||
-                nodeType.includes('hmd-codeblock') ||
-                nodeType.includes('formatting')
-              ) {
-                inSkipZone = true
-              }
-            },
-          })
-        }
+        const tree = syntaxTree(view.state)
+        tree.iterate({
+          from,
+          to,
+          enter: (node: SyntaxNodeRef) => {
+            const nodeType = node.type.name.toLowerCase()
+            // Skip if inside code, link, or inline-code nodes
+            if (
+              nodeType.includes('code') ||
+              nodeType.includes('link') ||
+              nodeType.includes('inline') ||
+              nodeType.includes('hmd-codeblock') ||
+              nodeType.includes('formatting')
+            ) {
+              inSkipZone = true
+            }
+          },
+        })
 
         if (inSkipZone) {
           continue

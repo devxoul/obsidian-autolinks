@@ -36,7 +36,9 @@ export function findAutoLinks(text: string, rules: AutoLinkRule[]): AutoLinkMatc
 
         matches.push({ start, end, matchedText, url })
       }
-    } catch (_e) {}
+    } catch {
+      // Silently ignore invalid regex patterns - they are already filtered by validatePattern
+    }
   }
 
   // Sort by start position

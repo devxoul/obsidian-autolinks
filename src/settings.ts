@@ -27,7 +27,7 @@ export class AutoLinksSettingTab extends PluginSettingTab {
     const { containerEl } = this
     containerEl.empty()
 
-    containerEl.createEl('h2', { text: 'Auto Links Settings' })
+    new Setting(containerEl).setName('Auto links settings').setHeading()
 
     // Display existing rules
     this.plugin.settings.rules.forEach((rule, index) => {
@@ -50,7 +50,7 @@ export class AutoLinksSettingTab extends PluginSettingTab {
                 try {
                   new RegExp(value)
                   text.inputEl.removeClass('auto-link-error')
-                } catch (_e) {
+                } catch {
                   text.inputEl.addClass('auto-link-error')
                 }
               }
@@ -59,7 +59,7 @@ export class AutoLinksSettingTab extends PluginSettingTab {
 
       // URL template input
       new Setting(ruleContainer)
-        .setName('URL Template')
+        .setName('URL template')
         .setDesc('URL with $1, $2, etc. for capture groups')
         .addText((text) =>
           text
@@ -106,7 +106,7 @@ export class AutoLinksSettingTab extends PluginSettingTab {
       .setDesc('Create a new auto-link pattern')
       .addButton((button) =>
         button
-          .setButtonText('Add Rule')
+          .setButtonText('Add rule')
           .setCta()
           .onClick(async () => {
             this.plugin.settings.rules.push({

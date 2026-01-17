@@ -62,7 +62,7 @@ export function findAutoLinks(text: string, rules: AutoLinkRule[]): AutoLinkMatc
  * Replace $1, $2, ... $9 in URL template with capture groups.
  */
 export function substituteCaptures(template: string, match: RegExpMatchArray | RegExpExecArray): string {
-  return template.replace(/\$(\d)/g, (_, n) => {
+  return template.replace(/\$(\d)/g, (_, n: string) => {
     const index = parseInt(n, 10)
     return match[index] || ''
   })

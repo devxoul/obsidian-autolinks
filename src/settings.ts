@@ -60,7 +60,7 @@ export class AutoLinksSettingTab extends PluginSettingTab {
       // URL template input
       new Setting(ruleContainer)
         .setName('URL template')
-        .setDesc('Link target with $1, $2, etc. for capture groups')
+        .setDesc('Use $1, $2 for capture groups')
         .addText((text) =>
           text
             .setPlaceholder('https://example.com/$1')

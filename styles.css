@@ -2,14 +2,12 @@
 
 .auto-link {
   color: var(--text-accent);
-  text-decoration: underline;
-  text-decoration-color: var(--text-accent);
+  text-decoration: none;
   cursor: pointer;
 }
 
 .auto-link:hover {
   color: var(--text-accent-hover);
-  text-decoration-color: var(--text-accent-hover);
 }
 
 .auto-link-error {

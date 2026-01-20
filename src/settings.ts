@@ -1,4 +1,4 @@
-import { App, PluginSettingTab, Setting } from 'obsidian'
+import { App, Notice, PluginSettingTab, Setting } from 'obsidian'
 import MyPlugin from './main'
 
 export interface AutoLinkRule {
@@ -28,6 +28,20 @@ export class AutoLinksSettingTab extends PluginSettingTab {
     containerEl.empty()
 
     new Setting(containerEl).setName('Rules').setHeading()
+
+    new Setting(containerEl)
+      .setName('Import/Export')
+      .setDesc('Backup or restore your rules')
+      .addButton((button) =>
+        button.setButtonText('Export').onClick(() => {
+          this.exportRules()
+        }),
+      )
+      .addButton((button) =>
+        button.setButtonText('Import').onClick(() => {
+          this.importRules()
+        }),
+      )
 
     // Display existing rules
     this.plugin.settings.rules.forEach((rule, index) => {
@@ -115,8 +129,59 @@ export class AutoLinksSettingTab extends PluginSettingTab {
               enabled: true,
             })
             await this.plugin.saveSettings()
-            this.display() // Refresh display
+            this.display()
           }),
       )
+  }
+
+  private exportRules(): void {
+    const rules = this.plugin.settings.rules
+    const json = JSON.stringify(rules, null, 2)
+    const blob = new Blob([json], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'autolinks-rules.json'
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  private importRules(): void {
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = '.json'
+    input.onchange = async () => {
+      const file = input.files?.[0]
+      if (!file) return
+
+      try {
+        const text = await file.text()
+        const imported = JSON.parse(text) as unknown
+        const rules = this.parseImportedRules(imported)
+        if (rules.length === 0) {
+          new Notice('No valid rules found in file')
+          return
+        }
+        this.plugin.settings.rules.push(...rules)
+        await this.plugin.saveSettings()
+        this.display()
+        new Notice(`Imported ${rules.length} rule(s)`)
+      } catch {
+        new Notice('Failed to import rules: invalid file format')
+      }
+    }
+    input.click()
+  }
+
+  private parseImportedRules(data: unknown): AutoLinkRule[] {
+    if (!Array.isArray(data)) return []
+    return data.filter(
+      (item): item is AutoLinkRule =>
+        typeof item === 'object' &&
+        item !== null &&
+        typeof item.pattern === 'string' &&
+        typeof item.url === 'string' &&
+        typeof item.enabled === 'boolean',
+    )
   }
 }

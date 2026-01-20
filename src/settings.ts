@@ -30,7 +30,7 @@ export class AutoLinksSettingTab extends PluginSettingTab {
     new Setting(containerEl).setName('Rules').setHeading()
 
     new Setting(containerEl)
-      .setName('Import/Export')
+      .setName('Import/export')
       .setDesc('Backup or restore your rules')
       .addButton((button) =>
         button.setButtonText('Export').onClick(() => {
@@ -175,13 +175,10 @@ export class AutoLinksSettingTab extends PluginSettingTab {
 
   private parseImportedRules(data: unknown): AutoLinkRule[] {
     if (!Array.isArray(data)) return []
-    return data.filter(
-      (item): item is AutoLinkRule =>
-        typeof item === 'object' &&
-        item !== null &&
-        typeof item.pattern === 'string' &&
-        typeof item.url === 'string' &&
-        typeof item.enabled === 'boolean',
-    )
+    return data.filter((item): item is AutoLinkRule => {
+      if (typeof item !== 'object' || item === null) return false
+      const obj = item as Record<string, unknown>
+      return typeof obj.pattern === 'string' && typeof obj.url === 'string' && typeof obj.enabled === 'boolean'
+    })
   }
 }

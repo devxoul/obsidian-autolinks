@@ -2,9 +2,10 @@
 
 Auto-convert regex patterns to clickable links in Obsidian, similar to GitHub's autolink feature but with full regex support.
 
-![obsidian-autolinks](https://github.com/user-attachments/assets/c607f168-01eb-4dca-8084-8fd5d228bdff)
-
-![settings](https://github.com/user-attachments/assets/3cb5127a-c2a2-4621-b768-2f41c93b5d96)
+<p>
+  <img src="https://github.com/user-attachments/assets/c607f168-01eb-4dca-8084-8fd5d228bdff" width="49%" />
+  <img src="https://github.com/user-attachments/assets/3cb5127a-c2a2-4621-b768-2f41c93b5d96" width="49%" />
+</p>
 
 ## Features
 

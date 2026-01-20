@@ -68,6 +68,7 @@ BRAT will automatically check for updates and keep the plugin up to date.
 | Pattern | URL Template | Input | Output Link |
 |---------|--------------|-------|-------------|
 | `ISSUE-(\d+)` | `https://github.com/myorg/myrepo/issues/$1` | `ISSUE-123` | `https://github.com/myorg/myrepo/issues/123` |
+| `(ABC\|DEF)-(\d+)` | `https://notion.so/myteam/$1-$2` | `ABC-123` | `https://notion.so/myteam/ABC-123` |
 | `\$([A-Z]{3})` | `https://finance.yahoo.com/quote/$1` | `$AAPL` | `https://finance.yahoo.com/quote/AAPL` |
 | `PR#(\d+)` | `https://github.com/myorg/myrepo/pull/$1` | `PR#456` | `https://github.com/myorg/myrepo/pull/456` |
 | `@([a-zA-Z0-9_]+)` | `https://twitter.com/$1` | `@username` | `https://twitter.com/username` |

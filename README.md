@@ -20,11 +20,7 @@ Auto-convert regex patterns to clickable links in Obsidian, similar to GitHub's 
 
 ### From Obsidian Community Plugins
 
-This plugin is available in the [Obsidian Community Plugins](https://community.obsidian.md/plugins/autolinks). Install it directly from:
-
-1. Open Settings → Community Plugins
-2. Search for "Auto Links"
-3. Click Install, then Enable
+Visit the [Obsidian Community Plugins page](https://community.obsidian.md/plugins/autolinks) and click **Add to Obsidian**, then enable the plugin.
 
 ### Manual Installation
 

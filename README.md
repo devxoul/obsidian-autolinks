@@ -26,25 +26,6 @@ This plugin is available in the [Obsidian Community Plugins](https://community.o
 2. Search for "Auto Links"
 3. Click Install, then Enable
 
-### Using BRAT
-
-You can also install it using [BRAT (Beta Reviewers Auto-update Tool)](https://github.com/TfTHacker/obsidian42-brat):
-
-1. Install BRAT from Obsidian Community Plugins
-   - Open Settings → Community Plugins → Browse
-   - Search for "BRAT"
-   - Click Install, then Enable
-2. Add this plugin via BRAT
-   - Open Settings → BRAT
-   - Click "Add Beta Plugin"
-   - Enter: `devxoul/obsidian-autolinks`
-   - Click "Add Plugin"
-3. Enable the plugin
-   - Open Settings → Community Plugins
-   - Find "Auto Links" and enable it
-
-BRAT will automatically check for updates and keep the plugin up to date.
-
 ### Manual Installation
 
 1. Download `main.js`, `manifest.json`, and `styles.css` from the latest release

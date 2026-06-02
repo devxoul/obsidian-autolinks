@@ -4,7 +4,7 @@ Auto-convert regex patterns to clickable links in Obsidian, similar to GitHub's 
 
 | Editor | Options |
 |--------|---------|
-| ![Editor](https://github.com/user-attachments/assets/4489fa1a-bd2e-4c62-b353-566f535ac6d8) | ![Options](https://github.com/user-attachments/assets/3b1db1a4-a3cd-4144-b5d9-0ecbafabd9ca) |
+| ![Editor](images/editor.png) | ![Options](images/options.png) |
 
 
 ## Features
@@ -18,17 +18,17 @@ Auto-convert regex patterns to clickable links in Obsidian, similar to GitHub's 
 
 ## Installation
 
-### From Obsidian Community Plugins (Coming Soon)
+### From Obsidian Community Plugins
 
-This plugin is currently [under review](https://github.com/obsidianmd/obsidian-releases/pull/9582) for the Obsidian Community Plugins. Once approved, you'll be able to install it directly from:
+This plugin is available in the [Obsidian Community Plugins](https://community.obsidian.md/plugins/autolinks). Install it directly from:
 
 1. Open Settings → Community Plugins
 2. Search for "Auto Links"
 3. Click Install, then Enable
 
-### Using BRAT (Recommended for Beta Testers)
+### Using BRAT
 
-While the plugin is under review, you can install it using [BRAT (Beta Reviewers Auto-update Tool)](https://github.com/TfTHacker/obsidian42-brat):
+You can also install it using [BRAT (Beta Reviewers Auto-update Tool)](https://github.com/TfTHacker/obsidian42-brat):
 
 1. Install BRAT from Obsidian Community Plugins
    - Open Settings → Community Plugins → Browse

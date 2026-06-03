@@ -15,7 +15,9 @@
     "lint:fix": "oxlint --fix",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
-    "test": "bun test"
+    "test": "bun test",
+    "audit": "bun audit",
+    "review": "bun run typecheck && bun run lint && bun run format:check && bun run test && (bun audit || true)"
   },
   "dependencies": {
     "@codemirror/language": "^6.11.0",
@@ -35,6 +37,10 @@
     "typescript": "^5.8.3"
   },
   "overrides": {
-    "@codemirror/state": "^6.5.0"
+    "@codemirror/state": "^6.5.0",
+    "fast-uri": "^3.1.2",
+    "flatted": "^3.4.2",
+    "picomatch": "^4.0.4",
+    "yaml": "^2.8.3"
   }
 }

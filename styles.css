@@ -10,6 +10,9 @@
   color: var(--text-accent-hover);
 }
 
-.auto-link-error {
-  border-color: var(--text-error) !important;
+input.auto-link-error,
+input.auto-link-error:hover,
+input.auto-link-error:focus,
+input.auto-link-error:active {
+  border-color: var(--text-error);
 }

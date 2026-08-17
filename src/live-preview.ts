@@ -14,6 +14,21 @@ import { findAutoLinks } from './autolink-engine'
 import AutoLinksPlugin from './main'
 
 /**
+ * Whether a syntax node's own range genuinely overlaps [from, to), as
+ * opposed to merely touching one of its boundary points.
+ *
+ * `Tree.iterate` calls `enter` for any node that *touches* the from/to
+ * region (`node.from <= to && node.to >= from`), which also matches a node
+ * that ends exactly at `from` or starts exactly at `to` - e.g. a list
+ * marker's formatting node ending right where the following text begins.
+ * Skip-zone checks care about actual overlap with the matched text, so
+ * touching nodes must be excluded explicitly.
+ */
+export function nodeOverlapsRange(nodeFrom: number, nodeTo: number, from: number, to: number): boolean {
+  return nodeFrom < to && nodeTo > from
+}
+
+/**
  * Widget that renders an auto-link as a clickable anchor element.
  */
 class AutoLinkWidget extends WidgetType {
@@ -81,6 +96,9 @@ class AutoLinkPlugin implements PluginValue {
           from,
           to,
           enter: (node: SyntaxNodeRef) => {
+            if (!nodeOverlapsRange(node.from, node.to, from, to)) {
+              return
+            }
             const nodeType = node.type.name.toLowerCase()
             // Skip if inside code, link, or inline-code nodes
             if (
